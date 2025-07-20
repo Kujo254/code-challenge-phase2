@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# 📈 Smart Goal Planner
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React app that helps users create, track, and manage their financial goals.  
+Users can add savings goals, make deposits toward them, see their progress, and get alerts when deadlines are close or overdue.  
+The app fetches and saves data using a local `db.json` file served with `json-server`.
+##  Features
 
-## Available Scripts
+-  Create, update, and delete savings goals
+-  Track progress visually with progress bars
+-  Deposit money toward any goal
+-  Overview of total goals, total saved, and completed goals
+-  Warnings for goals close to deadline or overdue
+-  Data persisted via REST API (CRUD) to `db.json`
+##  Tech Stack
 
-In the project directory, you can run:
+- React (Create React App)
+- JavaScript (ES6+)
+- CSS (inline & optional styling)
+- JSON Server (`db.json` as mock REST API)
+- Git & GitHub (version control)
+## 🧰 Getting Started
 
-### `npm start`
+### Prerequisites
+Make sure you have these installed:
+- [Node.js & npm](https://nodejs.org/)
+- [Git](https://git-scm.com/)
+- [JSON Server](https://www.npmjs.com/package/json-server)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1 Clone this repository:
+```bash
+git clone <your-repo-url>
+cd smart-goal-planner
+2 Install dependencies:
 
-### `npm test`
+bash
+Copy
+Edit
+npm install
+3 Start the React app:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+bash
+Copy
+Edit
+npm start
+4 In another terminal, start JSON Server:
 
-### `npm run build`
+bash
+Copy
+Edit
+npx json-server --watch db.json --port 3001
+5 Open your browser and go to:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+React app: http://localhost:3000
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+JSON Server API: http://localhost:3001/goals
+## 📋 Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Open the app in your browser at [http://localhost:3000](http://localhost:3000)
+- Add a new goal by filling out the form and submitting
+- View all your goals in the list with progress bars
+- Make deposits toward a goal to increase its saved amount
+- See the overview section for total goals, total saved, completed goals, and warnings for deadlines
+- Edit or delete goals as needed
+## 📜 License
 
-### `npm run eject`
+This project is for educational purposes at Moringa School.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🙌 Acknowledgments
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Thanks to Moringa School instructors & peers
+- Built with [React](https://reactjs.org/) and [JSON Server](https://github.com/typicode/json-server)
+## ✍️ Author
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Kurui Joshua**
+- [GitHub](https://github.com/Kujo254)
+- Email: kuruijoshua@gmail.com
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
