@@ -1,86 +1,76 @@
 import React, { useState } from "react";
 
-function AddGoalForm({ goals }) {
-  // track form fields
-  const [form, setForm] = useState({
-    name: "",
-    targetAmount: "",
-    category: "",
-    deadline: "",
-  });
+// Form for adding a new goal
+function AddGoalForm({ setGoals }) {
+  // form state
+  const [name, setName] = useState("");
+  const [targetAmount, setTargetAmount] = useState("");
+  const [category, setCategory] = useState("");
+  const [deadline, setDeadline] = useState("");
 
-  // handle input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  };
-
-  // handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // basic validation
-    if (!form.name || !form.targetAmount || !form.deadline || !form.category) {
-      alert("Please fill in all fields.");
-      return;
-    }
-
-    // create a new goal
     const newGoal = {
-      ...form,
-      id: String(goals.length + 1), // generate id (better to let backend handle in real apps)
-      targetAmount: Number(form.targetAmount),
-      savedAmount: 0, // start with zero saved
-      createdAt: new Date().toISOString().split("T")[0], // today’s date
+      name,
+      targetAmount: Number(targetAmount),
+      savedAmount: 0,
+      category,
+      deadline,
+      createdAt: new Date().toISOString().split("T")[0]
     };
 
-    // send POST to server
+    // POST to server
     fetch("http://localhost:3001/goals", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newGoal),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newGoal)
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("Added goal:", data);
-        window.location.reload(); // refresh the page to show new goal
+        // update state by adding new goal
+        setGoals((prev) => [...prev, data]);
+
+        // reset form
+        setName("");
+        setTargetAmount("");
+        setCategory("");
+        setDeadline("");
       })
       .catch((err) => console.error("Error adding goal:", err));
   };
 
   return (
-    <div style={{ marginBottom: "20px", padding: "10px", border: "1px solid #ccc" }}>
+    <div style={{ marginTop: "20px", marginBottom: "20px" }}>
       <h2>Add New Goal</h2>
-
-      {/* form to create a goal */}
       <form onSubmit={handleSubmit}>
         <input
-          name="name"
+          type="text"
           placeholder="Goal Name"
-          value={form.name}
-          onChange={handleChange}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
         />
         <input
-          name="targetAmount"
-          placeholder="Target Amount"
           type="number"
-          value={form.targetAmount}
-          onChange={handleChange}
+          placeholder="Target Amount"
+          value={targetAmount}
+          onChange={(e) => setTargetAmount(e.target.value)}
+          required
         />
         <input
-          name="category"
+          type="text"
           placeholder="Category"
-          value={form.category}
-          onChange={handleChange}
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          required
         />
         <input
-          name="deadline"
-          placeholder="Deadline"
           type="date"
-          value={form.deadline}
-          onChange={handleChange}
+          placeholder="Deadline"
+          value={deadline}
+          onChange={(e) => setDeadline(e.target.value)}
+          required
         />
         <button type="submit">Add Goal</button>
       </form>
