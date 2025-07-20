@@ -1,7 +1,15 @@
 import React from "react";
+import GoalItem from "./GoalItem";
 
-function GoalList() {
-  return <div>GoalList Placeholder</div>;
+function GoalList({ goals }) {
+  return (
+    <div>
+      <h2>Goals</h2>
+      {goals.map((goal) => (
+        <GoalItem key={goal.id} goal={goal} />
+      ))}
+    </div>
+  );
 }
 
 export default GoalList;
