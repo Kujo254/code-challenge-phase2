@@ -33,11 +33,23 @@ function GoalItem({ goal, onUpdate }) {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
-        onUpdate(); // ask App.js to re-fetch goals
+      .then(() => {
+        onUpdate();
         setIsEditing(false);
       })
       .catch((err) => console.error("Error updating goal:", err));
+  };
+
+  const handleDelete = () => {
+    if (!window.confirm(`Are you sure you want to delete "${goal.name}"?`)) return;
+
+    fetch(`http://localhost:3001/goals/${goal.id}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+        onUpdate();
+      })
+      .catch((err) => console.error("Error deleting goal:", err));
   };
 
   return (
@@ -98,6 +110,9 @@ function GoalItem({ goal, onUpdate }) {
           {percent === 100 && <p style={{ color: "green" }}>🎉 Goal Complete!</p>}
 
           <button onClick={() => setIsEditing(true)}>Edit</button>
+          <button onClick={handleDelete} style={{ marginLeft: "10px", color: "red" }}>
+            Delete
+          </button>
         </>
       )}
     </div>
