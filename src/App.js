@@ -7,17 +7,24 @@ function App() {
   const [goals, setGoals] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/goals")
-      .then((res) => res.json())
-      .then((data) => setGoals(data))
-      .catch((err) => console.error("Error fetching goals:", err));
+    fetchGoals();
   }, []);
 
+  const fetchGoals = () => {
+    fetch("http://localhost:3001/goals")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Fetched goals:", data);
+        setGoals(data);
+      })
+      .catch((err) => console.error("Error fetching goals:", err));
+  };
+
   return (
-    <div>
+    <div style={{ maxWidth: "800px", margin: "0 auto", padding: "20px" }}>
       <h1>Smart Goal Planner</h1>
-      <Overview />
-      <AddGoalForm />
+      <Overview goals={goals} />
+      <AddGoalForm goals={goals} />
       <GoalList goals={goals} />
     </div>
   );
