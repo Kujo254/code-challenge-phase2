@@ -1,12 +1,12 @@
 import React from "react";
 import GoalItem from "./GoalItem";
 
-function GoalList({ goals }) {
+function GoalList({ goals, fetchGoals }) {
   return (
     <div>
       <h2>Goals</h2>
-      {goals.map((goal) => (
-        <GoalItem key={goal.id} goal={goal} />
+      {goals.map(goal => (
+        <GoalItem key={goal.id} goal={goal} onUpdate={fetchGoals} />
       ))}
     </div>
   );

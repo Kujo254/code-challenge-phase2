@@ -25,7 +25,7 @@ function App() {
       <h1>Smart Goal Planner</h1>
       <Overview goals={goals} />
       <AddGoalForm goals={goals} />
-      <GoalList goals={goals} />
+      <GoalList goals={goals} fetchGoals={fetchGoals} />
     </div>
   );
 }
