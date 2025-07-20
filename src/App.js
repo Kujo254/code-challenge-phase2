@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import GoalList from "./components/GoalList";
 import AddGoalForm from "./components/AddGoalForm";
 import Overview from "./components/Overview";
+import "./App.css";
+
 
 function App() {
   // keep track of goals here
