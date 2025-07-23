@@ -11,7 +11,7 @@ function App() {
 
   // fetch goals from the JSON server when the app first loads
   useEffect(() => {
-    fetch("http://localhost:3001/goals")
+    fetch("https://my-json-server.typicode.com/Kujo254/code-challenge-phase2/goals")
       .then((res) => res.json())
       .then((data) => {
         setGoals(data); // set fetched goals in state

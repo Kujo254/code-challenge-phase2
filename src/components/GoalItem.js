@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 
 function GoalItem({ goal, onUpdate }) {
+  // track whether we’re editing this goal
   const [isEditing, setIsEditing] = useState(false);
+
+  // local form state when editing
   const [form, setForm] = useState({
     name: goal.name,
     targetAmount: goal.targetAmount,
@@ -9,18 +12,21 @@ function GoalItem({ goal, onUpdate }) {
     category: goal.category,
   });
 
+  // calculate progress
   const remaining = goal.targetAmount - goal.savedAmount;
   const percent = Math.min(100, Math.round((goal.savedAmount / goal.targetAmount) * 100));
 
+  // handle changes in the edit form
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
+  // save edited goal
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:3001/goals/${goal.id}`, {
+    fetch(`https://my-json-server.typicode.com/Kujo254/code-challenge-phase2/goals/${goal.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -32,22 +38,22 @@ function GoalItem({ goal, onUpdate }) {
         category: form.category,
       }),
     })
-      .then((res) => res.json())
       .then(() => {
-        onUpdate();
-        setIsEditing(false);
+        onUpdate(); // refresh goals
+        setIsEditing(false); // exit edit mode
       })
       .catch((err) => console.error("Error updating goal:", err));
   };
 
+  // delete goal
   const handleDelete = () => {
     if (!window.confirm(`Are you sure you want to delete "${goal.name}"?`)) return;
 
-    fetch(`http://localhost:3001/goals/${goal.id}`, {
+    fetch(`https://my-json-server.typicode.com/Kujo254/code-challenge-phase2/goals/${goal.id}`, {
       method: "DELETE",
     })
       .then(() => {
-        onUpdate();
+        onUpdate(); // refresh goals
       })
       .catch((err) => console.error("Error deleting goal:", err));
   };
@@ -56,6 +62,7 @@ function GoalItem({ goal, onUpdate }) {
     <div style={{ border: "1px solid #ccc", margin: "10px", padding: "10px" }}>
       {isEditing ? (
         <form onSubmit={handleSubmit}>
+          {/* Edit form inputs */}
           <input
             name="name"
             value={form.name}
@@ -86,12 +93,14 @@ function GoalItem({ goal, onUpdate }) {
         </form>
       ) : (
         <>
+          {/* Goal details */}
           <h3>{goal.name}</h3>
           <p>Category: {goal.category}</p>
           <p>Saved: {goal.savedAmount} / {goal.targetAmount}</p>
           <p>Remaining: {remaining <= 0 ? 0 : remaining}</p>
           <p>Deadline: {goal.deadline}</p>
 
+          {/* Progress bar */}
           <div style={{ background: "#eee", height: "20px", width: "100%", marginTop: "10px" }}>
             <div
               style={{
@@ -107,8 +116,10 @@ function GoalItem({ goal, onUpdate }) {
             </div>
           </div>
 
+          {/* Show completed message if done */}
           {percent === 100 && <p style={{ color: "green" }}>🎉 Goal Complete!</p>}
 
+          {/* Edit and delete buttons */}
           <button onClick={() => setIsEditing(true)}>Edit</button>
           <button onClick={handleDelete} style={{ marginLeft: "10px", color: "red" }}>
             Delete

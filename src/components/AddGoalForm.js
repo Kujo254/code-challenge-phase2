@@ -21,7 +21,7 @@ function AddGoalForm({ setGoals }) {
     };
 
     // POST to server
-    fetch("http://localhost:3001/goals", {
+    fetch("https://my-json-server.typicode.com/Kujo254/code-challenge-phase2/goals", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newGoal)

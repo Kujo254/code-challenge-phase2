@@ -14,7 +14,7 @@ function GoalList({ goals, setGoals }) {
       savedAmount: goal.savedAmount + amount,
     };
 
-    fetch(`http://localhost:3001/goals/${goal.id}`, {
+    fetch(`https://my-json-server.typicode.com/Kujo254/code-challenge-phase2/goals/${goal.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ savedAmount: updated.savedAmount }),
@@ -32,7 +32,7 @@ function GoalList({ goals, setGoals }) {
 
   // handle delete
   const handleDelete = (id) => {
-    fetch(`http://localhost:3001/goals/${id}`, {
+    fetch(`https://my-json-server.typicode.com/Kujo254/code-challenge-phase2/goals/${id}`, {
       method: "DELETE",
     })
       .then(() => {
