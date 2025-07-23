@@ -3,6 +3,9 @@
 A React app that helps users create, track, and manage their financial goals.  
 Users can add savings goals, make deposits toward them, see their progress, and get alerts when deadlines are close or overdue.  
 The app fetches and saves data using a local `db.json` file served with `json-server`.
+[Live link](https://smartgoalfinder.netlify.app/)
+
+
 ##  Features
 
 -  Create, update, and delete savings goals
@@ -32,29 +35,24 @@ Make sure you have these installed:
 ```bash
 git clone <your-repo-url>
 cd smart-goal-planner
+```
 2 Install dependencies:
-
-bash
-Copy
-Edit
+```
 npm install
+```
 3 Start the React app:
-
-bash
-Copy
-Edit
+```
 npm start
+```
 4 In another terminal, start JSON Server:
-
-bash
-Copy
-Edit
+```
 npx json-server --watch db.json --port 3001
+```
 5 Open your browser and go to:
 
 React app: http://localhost:3000
 
-JSON Server API: http://localhost:3001/goals
+JSON Server API: https://my-json-server.typicode.com/Kujo254/code-challenge-phase2/goals
 ## 📋 Usage
 
 - Open the app in your browser at [http://localhost:3000](http://localhost:3000)
@@ -71,8 +69,7 @@ This project is for educational purposes at Moringa School.
 
 - Thanks to Moringa School instructors & peers
 - Built with [React](https://reactjs.org/) and [JSON Server](https://github.com/typicode/json-server)
-## ✍️ Author
-
+### Author
 - **Kurui Joshua**
 - [GitHub](https://github.com/Kujo254)
 - Email: kuruijoshua@gmail.com
