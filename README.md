@@ -37,7 +37,7 @@ Make sure you have these installed:
 1 Clone this repository:
 
 ```bash
-git clone <your-repo-url>
+git clone git@github.com:Kujo254/code-challenge-phase2.git
 cd smart-goal-planner
 ```bash
 
